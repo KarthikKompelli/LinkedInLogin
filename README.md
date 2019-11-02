@@ -38,17 +38,17 @@ Easy to use LinkedIn Login Android - Java
     Step 1.Call MiLinkedinActivity from your activity class
     
     ```java
-        Intent intent = new LinkedInBuilder.Builder(this)
-                    .setClientId(getString(R.string.client_id))//CLIENT_ID
-                    .setClientSecret(getString(R.string.client_secret))//CLIENT_SECRET
-                    .setRedirectUri(getString(R.string.redirect_uri))//REDIRECT_URI
-                    .setStateValue(getString(R.string.state_value))//STATE_VALUE
-                    .setScopeValue(KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE)//PASS_SCOPE_VALUE_HERE
-                    .build();
-            startActivityForResult(intent, KeyUtils.REQUEST_CODE);
-                   //For get only Email address pass scope value -->KeyUtils.ONLY_EMAIL_SCOPE
-                   //For get only user information pass scope value -->KeyUtils.ONLY_PROFILE_SCOPE
-                   //For get both email and user information pass scope value -->KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE
+    Intent intent = new LinkedInBuilder.Builder(this)
+                .setClientId(getString(R.string.client_id))//CLIENT_ID
+                .setClientSecret(getString(R.string.client_secret))//CLIENT_SECRET
+                .setRedirectUri(getString(R.string.redirect_uri))//REDIRECT_URI
+                .setStateValue(getString(R.string.state_value))//STATE_VALUE
+                .setScopeValue(KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE)//PASS_SCOPE_VALUE_HERE
+                .build();
+    startActivityForResult(intent, KeyUtils.REQUEST_CODE);
+    //For get only Email address pass scope value -->KeyUtils.ONLY_EMAIL_SCOPE
+    //For get only user information pass scope value -->KeyUtils.ONLY_PROFILE_SCOPE
+    //For get both email and user information pass scope value -->KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE
 		   
     ```
     Step 2.Get data from onActivityResult Method
