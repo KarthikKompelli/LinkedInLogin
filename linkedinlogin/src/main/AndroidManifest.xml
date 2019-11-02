@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.karthikkompelli.linkedinlogin">
+
+    <application>
+        <activity
+            android:name="com.karthikkompelli.linkedinlogin.presentation.MiLinkedInActivity"
+            android:theme="@style/AppThemeTransparent" />
+    </application>
+</manifest>
