@@ -48,8 +48,7 @@ Easy to use LinkedIn Login Android - Java
     startActivityForResult(intent, KeyUtils.REQUEST_CODE);
     //For get only Email address pass scope value -->KeyUtils.ONLY_EMAIL_SCOPE
     //For get only user information pass scope value -->KeyUtils.ONLY_PROFILE_SCOPE
-    //For get both email and user information pass scope value -->KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE
-		   
+    //For get both email and user information pass scope value -->KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE	   
     ```
     Step 2.Get data from onActivityResult Method
     
@@ -73,7 +72,6 @@ Easy to use LinkedIn Login Android - Java
             //Login failed handle error
         }
     }
-    
    ```
 ### Requirments   
 
