@@ -1,5 +1,9 @@
 # LinkedInLogin
-Easy to use LinkedIn Login Android
+Easy to use LinkedIn Login Android - Java
+
+### Key Features
+
+* Integrate LinkedIn Login
 
 # Usage
 
