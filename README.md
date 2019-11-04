@@ -1,5 +1,4 @@
 # LinkedInLogin
- [![](https://jitpack.io/v/KarthikKompelli/LinkedInLogin.svg)](https://jitpack.io/#KarthikKompelli/LinkedInLogin)
 Easy to use LinkedIn Login Android - Java
 
 ### Key Features
