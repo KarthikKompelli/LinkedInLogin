@@ -29,7 +29,7 @@ Easy to use LinkedIn Login Android - Java
     ```groovy
         dependencies {
             ...
-            implementation 'com.github.KarthikKompelli:LinkedInLogin:0.1.0'
+            implementation 'com.github.KarthikKompelli:LinkedInLogin:0.1.1'
         }
     ``` 
        
