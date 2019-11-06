@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">LinkedInSample</string>
-    <string name="client_id">784p8bl9zqho49</string>
-    <string name="client_secret">Z1rzU2kcp0BqQHsY</string>
-    <string name="redirect_uri">http://seewheelers.com/auth/callback</string>
-    <string name="state_value">seewheelers</string>
+    <string name="app_name"> </string>
+    <string name="client_id"> </string>
+    <string name="client_secret"> </string>
+    <string name="redirect_uri"> </string>
+    <string name="state_value"> </string>
 </resources>

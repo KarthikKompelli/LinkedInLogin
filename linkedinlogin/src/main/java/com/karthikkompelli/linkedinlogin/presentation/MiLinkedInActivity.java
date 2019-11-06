@@ -212,38 +212,54 @@ public class MiLinkedInActivity extends AppCompatActivity {
                 .enqueue(new Callback<UserListResponse>() {
                     @Override
                     public void onResponse(Call<UserListResponse> call, Response<UserListResponse> response) {
-                        if (response != null) {
-                            if (response.isSuccessful()) {
-                                if (response.body() != null) {
-                                    UserListResponse userDetailsResponse = response.body();
-                                    if (userDetailsResponse != null) {
-                                        if (null != userDetailsResponse.getFirstName().getLocalized().getEnglishUs()) {
-                                            userDetails.setFirstName(userDetailsResponse.getFirstName().getLocalized().getEnglishUs());
-                                        }
-                                        if (null != userDetailsResponse.getLastName().getLocalized().getEnglishUs()) {
-                                            userDetails.setLastName(userDetailsResponse.getLastName().getLocalized().getEnglishUs());
-                                        }
+                        try {
+                            if (response != null) {
+                                if (response.isSuccessful()) {
+                                    if (response.body() != null) {
+                                        UserListResponse userDetailsResponse = response.body();
+                                        if (userDetailsResponse != null) {
+                                            try {
+                                                if (null != userDetailsResponse.getFirstName().getLocalized().getEnglishUs()) {
+                                                    userDetails.setFirstName(userDetailsResponse.getFirstName().getLocalized().getEnglishUs());
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                            try {
+                                                if (null != userDetailsResponse.getLastName().getLocalized().getEnglishUs()) {
+                                                    userDetails.setLastName(userDetailsResponse.getLastName().getLocalized().getEnglishUs());
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
 
-                                        if (userDetailsResponse.getProfilePicture().getDisplayImageUrl().getElements().get(0).getIdentifiers().get(0).getIdentifier() != null) {
-                                            userDetails.setImage(userDetailsResponse.getProfilePicture().getDisplayImageUrl().getElements().get(0).getIdentifiers().get(0).getIdentifier());
+                                            try {
+                                                if (userDetailsResponse.getProfilePicture().getDisplayImageUrl().getElements().get(0).getIdentifiers().get(0).getIdentifier() != null) {
+                                                    userDetails.setImage(userDetailsResponse.getProfilePicture().getDisplayImageUrl().getElements().get(0).getIdentifiers().get(0).getIdentifier());
+                                                }
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                            if (scopeValue.equals(KeyUtils.ONLY_EMAIL_SCOPE) || scopeValue.equals(KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE)) {
+                                                callUserEmailApi(accessToken);
+                                            } else {
+                                                Intent intent = new Intent();
+                                                intent.putExtra(KEY_LINKEDIN_CONTENT, userDetails);
+                                                setResult(Activity.RESULT_OK, intent);
+                                                finish();
+                                            }
                                         }
-                                        if (scopeValue.equals(KeyUtils.ONLY_EMAIL_SCOPE) || scopeValue.equals(KeyUtils.BOTH_EMAIL_USERDETAILS_SCOPE_VALUE)) {
-                                            callUserEmailApi(accessToken);
-                                        } else {
-                                            Intent intent = new Intent();
-                                            intent.putExtra(KEY_LINKEDIN_CONTENT, userDetails);
-                                            setResult(Activity.RESULT_OK, intent);
-                                            finish();
-                                        }
+                                    } else {
+                                        setResult(Activity.RESULT_CANCELED, new Intent());
+                                        finish();
                                     }
                                 } else {
                                     setResult(Activity.RESULT_CANCELED, new Intent());
                                     finish();
                                 }
-                            } else {
-                                setResult(Activity.RESULT_CANCELED, new Intent());
-                                finish();
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 
@@ -263,24 +279,28 @@ public class MiLinkedInActivity extends AppCompatActivity {
                 .enqueue(new Callback<UserEmailResponse>() {
                     @Override
                     public void onResponse(Call<UserEmailResponse> call, Response<UserEmailResponse> response) {
-                        if (response != null) {
-                            if (response.isSuccessful()) {
-                                if (response.body() != null) {
-                                    UserEmailResponse userDetailsResponse = response.body();
-                                    if (userDetailsResponse != null) {
-                                        Intent intent = new Intent();
-                                        if (userDetailsResponse.getElements().get(0).getHandleData().getEmailAddress() != null) {
-                                            userDetails.setEmail(userDetailsResponse.getElements().get(0).getHandleData().getEmailAddress());
+                        try {
+                            if (response != null) {
+                                if (response.isSuccessful()) {
+                                    if (response.body() != null) {
+                                        UserEmailResponse userDetailsResponse = response.body();
+                                        if (userDetailsResponse != null) {
+                                            Intent intent = new Intent();
+                                            if (userDetailsResponse.getElements().get(0).getHandleData().getEmailAddress() != null) {
+                                                userDetails.setEmail(userDetailsResponse.getElements().get(0).getHandleData().getEmailAddress());
+                                            }
+                                            intent.putExtra(KEY_LINKEDIN_CONTENT, userDetails);
+                                            setResult(Activity.RESULT_OK, intent);
+                                            finish();
+                                        } else {
+                                            setResult(Activity.RESULT_CANCELED, new Intent());
+                                            finish();
                                         }
-                                        intent.putExtra(KEY_LINKEDIN_CONTENT, userDetails);
-                                        setResult(Activity.RESULT_OK, intent);
-                                        finish();
-                                    } else {
-                                        setResult(Activity.RESULT_CANCELED, new Intent());
-                                        finish();
                                     }
                                 }
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
                     }
 
